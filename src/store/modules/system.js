@@ -1,5 +1,5 @@
 export default {
   state: {
-    title: 'hello world'
+    title: 'ACE Admin'
   }
 }

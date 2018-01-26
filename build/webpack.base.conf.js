@@ -1,4 +1,5 @@
 'use strict'
+const webpack = require('webpack')
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
@@ -22,8 +23,7 @@ const createLintingRule = () => ({
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js',
-    login: './src/login.js'
+    app: './src/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -36,6 +36,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       '@': resolve('src'),
+      'assets': resolve('src/assets')
     }
   },
   module: {
@@ -74,6 +75,13 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /.css$/,
+        include: [
+          path.resolve(__dirname, "not_exist_path")
+        ],
+        loader: "style!css"
       }
     ]
   },

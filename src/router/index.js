@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
+import NavBar from '@/components/Navbar'
 
 Vue.use(VueRouter)
 
@@ -13,7 +14,8 @@ export default new VueRouter({
     },
     {
       path: '/a',
-      template: '<div>this is A</div>'
+      name: 'test',
+      component: NavBar
     }
   ]
 })
