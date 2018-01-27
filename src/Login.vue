@@ -16,9 +16,9 @@
             <div class="space-6"></div>
 
             <div class="position-relative">
-              <login-box v-if="type===1" @forget-click="clickForget" @sigup-click="clickSignup"></login-box>
-              <forgot-box v-if="type===2" @login-click="clickLogin"></forgot-box>
-              <signup-box v-if="type===3" @login-click="clickLogin"></signup-box>
+              <login-box v-if="type===1" @forget-click="changeView(2)" @sigup-click="changeView(3)"></login-box>
+              <forgot-box v-if="type===2" @login-click="changeView(1)"></forgot-box>
+              <signup-box v-if="type===3" @login-click="changeView(1)"></signup-box>
             </div>
           </div>
         </div>
@@ -51,14 +51,8 @@
       SignupBox
     },
     methods: {
-      clickForget () {
-        this.type = 2
-      },
-      clickSignup () {
-        this.type = 3
-      },
-      clickLogin () {
-        this.type = 1
+      changeView (type) {
+        this.type = type
       }
     }
   }

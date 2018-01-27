@@ -13,14 +13,14 @@
           <fieldset>
             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="Username" />
+															<input type="text" class="form-control" placeholder="Username" v-model="username"/>
 															<i class="ace-icon fa fa-user"></i>
 														</span>
             </label>
 
             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="Password" />
+															<input type="password" class="form-control" placeholder="Password" v-model="password"/>
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
             </label>
@@ -29,11 +29,11 @@
 
             <div class="clearfix">
               <label class="inline">
-                <input type="checkbox" class="ace" />
+                <input type="checkbox" class="ace" v-model="rememberme"/>
                 <span class="lbl"> Remember Me</span>
               </label>
 
-              <button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+              <button type="button" class="width-35 pull-right btn btn-sm btn-primary" @click="login">
                 <i class="ace-icon fa fa-key"></i>
                 <span class="bigger-110">Login</span>
               </button>
@@ -85,6 +85,13 @@
 
 <script>
   export default {
+    data () {
+      return {
+        username: '',
+        password: '',
+        rememberme: false
+      }
+    },
     props: {
       visible: {
         default: true,
@@ -97,6 +104,9 @@
       },
       clickSignup () {
         this.$emit('sigup-click')
+      },
+      login () {
+        console.log(this.username, this.rememberme)
       }
     }
   }
