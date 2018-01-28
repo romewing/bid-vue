@@ -1,215 +1,71 @@
 <template>
   <ul class="nav nav-list">
-    <li class="active">
-      <a href="index.html">
+    <li v-for="item in items">
+      <a :href="item.path||'#'" :class="{'dropdown-toggle': item.children!=0}">
         <i class="menu-icon fa fa-tachometer"></i>
-        <span class="menu-text"> Dashboard </span>
+        <span class="menu-text" v-text="item.name"></span>
+        <b class="arrow fa fa-angle-down" v-if="item.children.length!=0"></b>
       </a>
-
       <b class="arrow"></b>
-    </li>
-    <li class="">
-      <a href="#" class="dropdown-toggle">
-        <i class="menu-icon fa fa-desktop"></i>
-        <span class="menu-text">
-								UI &amp; Elements
-							</span>
-
-        <b class="arrow fa fa-angle-down"></b>
-      </a>
-
-      <b class="arrow"></b>
-
-      <ul class="submenu">
-        <li class="">
-          <a href="#" class="dropdown-toggle">
+      <ul class="submenu" v-if="item.children.length!=0">
+        <li class="" v-for="child in item.children">
+          <a :href="child.path">
             <i class="menu-icon fa fa-caret-right"></i>
-
-            Layouts
-            <b class="arrow fa fa-angle-down"></b>
+            {{child.name}}
           </a>
-
           <b class="arrow"></b>
-
-          <ul class="submenu">
-            <li class="">
-              <a href="top-menu.html">
-                <i class="menu-icon fa fa-caret-right"></i>
-                Top Menu
-              </a>
-
-              <b class="arrow"></b>
-            </li>
-
-            <li class="">
-              <a href="two-menu-1.html">
-                <i class="menu-icon fa fa-caret-right"></i>
-                Two Menus 1
-              </a>
-
-              <b class="arrow"></b>
-            </li>
-
-            <li class="">
-              <a href="two-menu-2.html">
-                <i class="menu-icon fa fa-caret-right"></i>
-                Two Menus 2
-              </a>
-
-              <b class="arrow"></b>
-            </li>
-
-            <li class="">
-              <a href="mobile-menu-1.html">
-                <i class="menu-icon fa fa-caret-right"></i>
-                Default Mobile Menu
-              </a>
-
-              <b class="arrow"></b>
-            </li>
-
-            <li class="">
-              <a href="mobile-menu-2.html">
-                <i class="menu-icon fa fa-caret-right"></i>
-                Mobile Menu 2
-              </a>
-
-              <b class="arrow"></b>
-            </li>
-
-            <li class="">
-              <a href="mobile-menu-3.html">
-                <i class="menu-icon fa fa-caret-right"></i>
-                Mobile Menu 3
-              </a>
-
-              <b class="arrow"></b>
-            </li>
-          </ul>
-        </li>
-
-        <li class="">
-          <a href="typography.html">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Typography
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <li class="">
-          <a href="elements.html">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Elements
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <li class="">
-          <a href="buttons.html">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Buttons &amp; Icons
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <li class="">
-          <a href="content-slider.html">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Content Sliders
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <li class="">
-          <a href="treeview.html">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Treeview
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <li class="">
-          <a href="jquery-ui.html">
-            <i class="menu-icon fa fa-caret-right"></i>
-            jQuery UI
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <li class="">
-          <a href="nestable-list.html">
-            <i class="menu-icon fa fa-caret-right"></i>
-            Nestable Lists
-          </a>
-
-          <b class="arrow"></b>
-        </li>
-
-        <li class="">
-          <a href="#" class="dropdown-toggle">
-            <i class="menu-icon fa fa-caret-right"></i>
-
-            Three Level Menu
-            <b class="arrow fa fa-angle-down"></b>
-          </a>
-
-          <b class="arrow"></b>
-
-          <ul class="submenu">
-            <li class="">
-              <a href="#">
-                <i class="menu-icon fa fa-leaf green"></i>
-                Item #1
-              </a>
-
-              <b class="arrow"></b>
-            </li>
-
-            <li class="">
-              <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-pencil orange"></i>
-
-                4th level
-                <b class="arrow fa fa-angle-down"></b>
-              </a>
-
-              <b class="arrow"></b>
-
-              <ul class="submenu">
-                <li class="">
-                  <a href="#">
-                    <i class="menu-icon fa fa-plus purple"></i>
-                    Add Product
-                  </a>
-
-                  <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                  <a href="#">
-                    <i class="menu-icon fa fa-eye pink"></i>
-                    View Products
-                  </a>
-
-                  <b class="arrow"></b>
-                </li>
-              </ul>
-            </li>
-          </ul>
         </li>
       </ul>
     </li>
+
+    <li v-for="item in items">
+      <router-link :to="item.path||'#'" :class="{'dropdown-toggle': item.children!=0}">
+        <i class="menu-icon fa fa-tachometer"></i>
+        <span class="menu-text" v-text="item.name"></span>
+        <b class="arrow fa fa-angle-down" v-if="item.children.length!=0"></b>
+      </router-link>
+      <b class="arrow"></b>
+      <ul class="submenu" v-if="item.children.length!=0">
+        <li class="" v-for="child in item.children">
+          <a :href="child.path">
+            <i class="menu-icon fa fa-caret-right"></i>
+            {{child.name}}
+          </a>
+          <b class="arrow"></b>
+        </li>
+      </ul>
+    </li>
+
   </ul>
 </template>
 <script>
   export default {
-    name: 'nav-list'
+    name: 'nav-list',
+    data () {
+      return {
+        items: [
+          {
+            name: '系统首页',
+            path: '/dashboard',
+            children: []
+          },
+          {
+            name: '市场信息',
+            path: '',
+            children: [
+              {
+                name: '招标公告',
+                path: '/info/biding'
+              },
+              {
+                name: '中标公告',
+                path: '/info/bided'
+              }
+            ]
+          }
+        ]
+      }
+    }
   }
 </script>
 <style>

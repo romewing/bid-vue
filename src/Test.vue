@@ -1,14 +1,11 @@
 <template>
   <div>
+    测试路由
   </div>
 </template>
 
 <script>
-  import Navbar from '@/components/Navbar'
   export default {
-    name: 'test',
-    components: {
-      Navbar
-    }
+    name: 'test'
   }
 </script>

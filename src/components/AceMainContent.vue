@@ -2,7 +2,7 @@
   <div class="main-content">
     <div class="main-content-inner">
       <ace-breadcrumbs></ace-breadcrumbs>
-      <router-view></router-view>
+      <router-view class="page-content"></router-view>
     </div>
   </div>
 
