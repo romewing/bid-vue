@@ -15,6 +15,8 @@ import './assets/js/ace.min'
 import './assets/js/ace-extra.min'
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 import router from './router'
 import store from './store'
 import Index from './Index.vue'
@@ -23,6 +25,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(VueI18n)
 Vue.use(ElementUI)
+Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -9,10 +9,14 @@
       <b class="arrow"></b>
       <ul class="submenu" v-if="item.children.length!=0">
         <li class="" v-for="child in item.children">
-          <a :href="child.path">
+          <!--<a :href="child.path">
             <i class="menu-icon fa fa-caret-right"></i>
             {{child.name}}
-          </a>
+          </a>-->
+          <router-link :to="child.path||'#'">
+            <i class="menu-icon fa fa-caret-right"></i>
+            {{child.name}}
+          </router-link>
           <b class="arrow"></b>
         </li>
       </ul>

@@ -4,7 +4,7 @@
       :data="tableData"
       style="width: 100%">
       <el-table-column
-        label="项目名称"
+        label="中国足球"
         width="380">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
@@ -70,7 +70,7 @@
         console.log(index, row)
       },
       getData () {
-        this.$http.post('/api/market/bided').then((res) => {
+        this.$http.get('/api/projects').then((res) => {
           console.log(res.data)
           this.tableData = res.data
         })

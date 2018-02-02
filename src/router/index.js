@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Test from '@/Test'
 
 Vue.use(VueRouter)
 
@@ -9,7 +8,11 @@ export default new VueRouter({
   routes: [
     {
       path: '/dashboard',
-      component: Test
+      component: () => import('../Test')
+    },
+    {
+      path: '/info/biding',
+      component: () => import('../Test2')
     }
   ]
 })
