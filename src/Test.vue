@@ -5,7 +5,7 @@
       style="width: 100%">
       <el-table-column
         label="项目名称"
-        width="380">
+        width="600">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
           <span style="margin-left: 10px">{{ scope.row.name }}</span>
@@ -13,7 +13,7 @@
       </el-table-column>
       <el-table-column
         label="业主名称"
-        width="180">
+        width="300">
         <template slot-scope="scope">
           <el-popover trigger="hover" placement="top">
             <p>姓名: {{ scope.row.owner }}</p>
@@ -24,7 +24,7 @@
           </el-popover>
         </template>
       </el-table-column>
-      <el-table-column label="业主电话" width="120" prop="owner_phone">
+      <el-table-column label="业主电话" width="150" prop="owner_phone">
       </el-table-column>
       <el-table-column label="信息来源" width="180" prop="source">
       </el-table-column>
@@ -46,9 +46,13 @@
     </el-table>
     <div class="block">
       <el-pagination
-        :page-sizes="[15, 20, 30]"
-        :page-size="15"
-        :total="400">
+        :page-sizes="pageSizes"
+        :page-size="pageSize"
+        :current-page = "currentPage"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+        @size-change="sizeChange"
+        @current-change="currentChange">
       </el-pagination>
     </div>
   </div>
@@ -59,7 +63,11 @@
   export default {
     data () {
       return {
-        tableData: []
+        tableData: [],
+        total: 0,
+        pageSize: 10,
+        currentPage: 1,
+        pageSizes: [10, 15, 20]
       }
     },
     methods: {
@@ -69,10 +77,24 @@
       handleDelete (index, row) {
         console.log(index, row)
       },
+      sizeChange (size) {
+        this.pageSize = size
+        this.getData()
+      },
+      currentChange (current) {
+        this.currentPage = current
+        this.getData()
+      },
       getData () {
-        this.$http.post('/api/market/bided').then((res) => {
+        this.$http.get('/api/market/bided', {
+          params: {
+            page: this.currentPage-1,
+            size: this.pageSize
+          }
+        }).then((res) => {
           console.log(res.data)
-          this.tableData = res.data
+          this.tableData = res.data.content
+          this.total = res.data.totalElements
         })
       }
     },
